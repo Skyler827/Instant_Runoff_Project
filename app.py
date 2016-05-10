@@ -7,9 +7,9 @@ def root():
     return app.send_static_file('index.html')
 
 
-@app.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
+@app.route('/static/style.css')
+def style():
+    return app.send_static_file('style.css')
 
 
 @app.route('/js/<path:path>')
