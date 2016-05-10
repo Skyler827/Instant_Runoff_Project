@@ -20,7 +20,7 @@ def send_js():
 
 if __name__ == '__main__':
 
-    conn = sqlite3.connect('databsae.db')
+    conn = sqlite3.connect('database.db')
     print("Opened database successfully");
 
     conn.execute('CREATE TABLE students (name TEXT, addr TEXT, city TEXT, pin TEXT)')
