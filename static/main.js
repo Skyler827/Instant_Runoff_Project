@@ -8,7 +8,7 @@ var notochords = [
     "michael", "mj", "skyler", "victoria"
 ];
 
-var elections = [
+var electionsNames = [
     "Musical Director",
     "President",
     "Associate Director",
@@ -16,6 +16,15 @@ var elections = [
     "Tresurer",
     "Public Relations 1",
     "Public Relations 2"
+];
+var elections = [
+    "musical-director",
+    "president",
+    "associate-director",
+    "business-manager",
+    "tresurer",
+    "public-relations-1",
+    "public-relations-2"
 ];
 var running = [[2,5,8],[4,1,9],[8,3,0],[11,4,5],[15,3,9],[14,1,2],[14,1,2]]
 var currentNotochord = null;
@@ -69,11 +78,11 @@ function loadPassword() {
 function loadElections() {
     elections.forEach(function(position, i, array) {
         $("<h3/>", {
-            text: position,
+            text: electionsNames[i],
             class: "election "+position
         }).appendTo("#elections");
         $("<div/>", {
-            class: "election "+position
+            class: "election "+position,
         }).appendTo("#elections");
         $("<ul/>", {
             id: position+"-list",
@@ -91,7 +100,6 @@ window.onload = function() {
     $("#elections").hide();
     loadNotos();
     loadElections();
-    $("#elections").accordion();
     elections.forEach(function(position, i, arr){
         $("#"+position+"-list").sortable();
 		$("#"+position+"-list").disableSelection();

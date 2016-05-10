@@ -17,3 +17,7 @@
 .login-select:hover {
     background-color: greenYellow;
 }
+element.style {
+	display: block;
+	height: auto;
+}
