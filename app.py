@@ -12,9 +12,9 @@ def style():
     return app.send_static_file('style.css')
 
 
-@app.route('/js/<path:path>')
-def send_js(path):
-    return send_from_directory('js', path)
+@app.route('/static/main.js')
+def send_js():
+    return app.send_static_file('main.js')
 
 
 if __name__ == '__main__':

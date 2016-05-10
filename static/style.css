@@ -1,7 +1,7 @@
 p {
-    color: blue;
+    color: red;
 }
-img {
+.login img {
     height: 150px;
     width: 150px;
 }
