@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory
+import sqlite3
 
 app = Flask(__name__, static_url_path='')
 
@@ -18,4 +19,11 @@ def send_js():
 
 
 if __name__ == '__main__':
+
+    conn = sqlite3.connect('databsae.db')
+    print("Opened database successfully");
+
+    conn.execute('CREATE TABLE students (name TEXT, addr TEXT, city TEXT, pin TEXT)')
+    print("Table created successfully");
     app.run()
+    conn.close()

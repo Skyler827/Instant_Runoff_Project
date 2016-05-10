@@ -7,23 +7,69 @@ var notochords = [
     "ernie", "ivy", "julia", "kate", "levi", "marissa",
     "michael", "mj", "skyler", "victoria"
 ];
+
+var elections = [
+    "president",
+    "musical-director",
+    "business-manager",
+    "associate-director",
+    "treasurer",
+    "social-media-manager",
+    "social-media-manager-2"
+];
 var currentNotochord = null;
-function capitalise(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() 
+         + string.slice(1).toLowerCase();
 }
-window.onload = function() {
-    for (var i=0; i<notochords.length; i++) {
-        $("<div/>", {
-            id: notochords[i]+"-select",
+function loadNotos() {
+    notochords.forEach(function(notochord, i, array) {
+        $("<a/>", {
+            id: notochord+"-select",
             class: "login-select ui-block-"+["a","b","c","d"][i%4],
+            href: "#"
         }).appendTo("#login");
         $("<img>", {
-            src:"photos/"+notochords[i]+".jpg",
+            src:"photos/"+notochord+".jpg",
             width: 150,
             height: 150,
-        }).appendTo("#"+notochords[i]+"-select");
+        }).appendTo("#"+notochord+"-select");
         $("<p/>", {
-            text: "login as "+capitalise(notochords[i])
+            text: "login as "+capitalize(notochord)
         }).appendTo("#"+notochords[i]+"-select");
-    }
+        $("#"+notochord+"-select").click(function(){
+            currentNotochord = i;
+            loadPassword();
+        });
+    });
+}
+function loadPassword() {
+    $("#login").hide();
+    $("#password").show();
+    $("<img>", {
+        src:"photos/"+notochords[currentNotochord]+".jpg",
+        width: 300,
+        height: 300,
+    }).prependTo("#password");
+}
+function loadElections() {
+    elections.forEach(function(position, i, array) {
+        $("<h3/>", {
+            text: position,
+        }).appendTo("#elections");
+        $("<div/>", {
+            
+        });
+    }); 
+}
+window.onload = function() {
+    $("#elections").hide();
+    $("#elections").accordion();
+    $("#password-back").click(function(){
+        $("#password img").remove();
+        $("#password").hide();
+        $("#login").show();
+    });
+    loadNotos();
+    loadElections();
 };
