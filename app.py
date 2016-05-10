@@ -17,6 +17,18 @@ def style():
 def send_js():
     return app.send_static_file('main.js')
 
+@app.route('/login')
+def test_credentials():
+    print(request.form)
+    if valid_login(request.args('username'), request.args.get('password')):
+        return ("CORRECT", 200, [])
+    else: return ("NOAT AUTHORIZED", 401, [])
+@app.route('/running')
+@app.route('/vote')
+@app.route('/results')
+
+def valid_login(name, password):
+    return True
 
 if __name__ == '__main__':
 

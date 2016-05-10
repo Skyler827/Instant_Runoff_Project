@@ -52,7 +52,18 @@ function loadPassword() {
         width: 300,
         height: 300,
     }).prependTo("#password");
-    $("")
+    $("form").submit(function(event){
+        event.preventDefault();
+        $("#form-message").text("verifying...")
+        $.ajax("login", {
+            password: $("#psw").value
+        }).done(function(data, textStatus, jqXHR) {
+            $("#password").hide();
+            $("#elections").show();
+        }).fail(function(data, textStatus, jqXHR) {
+            $("#form-message").text("password is incorrect.")
+        });
+    });
 }
 function loadElections() {
     elections.forEach(function(position, i, array) {
