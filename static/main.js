@@ -9,13 +9,13 @@ var notochords = [
 ];
 
 var elections = [
-    "musical-director",
-    "president",
-    "associate-director",
-    "business-manager",
-    "treasurer",
-    "public-relations-1",
-    "public-relations-2"
+    "Musical Director",
+    "President",
+    "Associate Director",
+    "Business Manager",
+    "Tresurer",
+    "Public Relations 1",
+    "Public Relations 2"
 ];
 var running = [[2,5,8],[4,1,9],[8,3,0],[11,4,5],[15,3,9],[14,1,2],[14,1,2]]
 var currentNotochord = null;
