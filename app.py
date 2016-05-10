@@ -19,16 +19,30 @@ def send_js():
 
 @app.route('/login')
 def test_credentials():
-    print(request.form)
-    if valid_login(request.args('username'), request.args.get('password')):
-        return ("CORRECT", 200, [])
-    else: return ("NOAT AUTHORIZED", 401, [])
+	try:
+		if valid_login(request.args.get('username'), request.args.get('password')):
+			return ("CORRECT", 200, [])
+		else: return ("NOAT AUTHORIZED", 401, [])
+	except Exception as a:
+		print(a)
 @app.route('/running')
 @app.route('/vote')
 @app.route('/results')
 
 def valid_login(name, password):
-    return True
+    global conn
+    c = conn.cursor()
+    try:
+        res=c.execute("SELECT pin FROM students WHERE name=%s"%name)
+    except Exception as a:
+        res = []
+        print(a)
+    resu = res if not res else res.fetchall()
+    if(res):
+        return resu[0]==password
+    else:
+        print("The user isn't in the database, so I don't know what to do with myself")
+        return True
 
 if __name__ == '__main__':
 
@@ -37,5 +51,5 @@ if __name__ == '__main__':
 
     #conn.execute('CREATE TABLE students (name TEXT, addr TEXT, city TEXT, pin TEXT)')
     #print("Table created successfully");
-    app.run()
+    app.run(host='0.0.0.0')
     conn.close()

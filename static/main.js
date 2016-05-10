@@ -56,6 +56,7 @@ function loadPassword() {
         event.preventDefault();
         $("#form-message").text("verifying...")
         $.ajax("login", {
+			username: notochords[currentNotochord],
             password: $("#psw").value
         }).done(function(data, textStatus, jqXHR) {
             $("#password").hide();
