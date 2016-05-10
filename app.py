@@ -32,13 +32,15 @@ def test_credentials():
 def valid_login(name, password):
     global conn
     c = conn.cursor()
+    print(name, password)
     try:
-        res=c.execute("SELECT pin FROM students WHERE name=%s"%name)
+        res=c.execute("SELECT password FROM students WHERE name = %s"%name)
     except Exception as a:
         res = []
         print(a)
+    print(res)
     resu = res if not res else res.fetchall()
-    if(res):
+    if(resu):
         return resu[0]==password
     else:
         print("The user isn't in the database, so I don't know what to do with myself")
