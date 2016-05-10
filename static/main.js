@@ -95,6 +95,9 @@ function loadElections() {
             }).appendTo("#"+position+"-list");
         });
     });
+    $("<button/>", {
+        text:"click me",
+    }).appendTo("#elections");
 }
 window.onload = function() {
     $("#elections").hide();
