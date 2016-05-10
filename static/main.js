@@ -9,13 +9,13 @@ var notochords = [
 ];
 
 var elections = [
-    "president",
     "musical-director",
-    "business-manager",
+    "president",
     "associate-director",
+    "business-manager",
     "treasurer",
-    "social-media-manager",
-    "social-media-manager-2"
+    "public-relations-1",
+    "public-relations-2"
 ];
 var running = [[2,5,8],[4,1,9],[8,3,0],[11,4,5],[15,3,9],[14,1,2],[14,1,2]]
 var currentNotochord = null;
@@ -76,16 +76,16 @@ function loadElections() {
 }
 window.onload = function() {
     //$("#elections").hide();
+    loadNotos();
+    loadElections();
     $("#elections").accordion();
     elections.forEach(function(position, i, arr){
         $("#"+position+"-list").sortable();
+		$("#"+position+"-list").disableSelection();
     });
-    $("ul, li").disableSelection();
     $("#password-back").click(function(){
         $("#password img").remove();
         $("#password").hide();
         $("#login").show();
     });
-    loadNotos();
-    loadElections();
 };
