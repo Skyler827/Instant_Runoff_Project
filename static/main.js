@@ -17,6 +17,7 @@ var elections = [
     "social-media-manager",
     "social-media-manager-2"
 ];
+var running = [[2,5,8],[4,1,9],[8,3,0],[11,4,5],[15,3,9],[14,1,2],[14,1,2]]
 var currentNotochord = null;
 function capitalize(string) {
     return string.charAt(0).toUpperCase() 
@@ -56,15 +57,30 @@ function loadElections() {
     elections.forEach(function(position, i, array) {
         $("<h3/>", {
             text: position,
+            class: "election "+position
         }).appendTo("#elections");
         $("<div/>", {
-            
+            class: "election "+position
+        }).appendTo("#elections");
+        $("<ul/>", {
+            id: position+"-list",
+            class: "sortable"
+        }).appendTo("div."+position);
+        running[i].forEach(function(notoIndex, i, arrayp) {
+            $("<li/>", {
+                class: "ui-state-default",
+                text: notochords[notoIndex]
+            }).appendTo("#"+position+"-list");
         });
-    }); 
+    });
 }
 window.onload = function() {
-    $("#elections").hide();
+    //$("#elections").hide();
     $("#elections").accordion();
+    elections.forEach(function(position, i, arr){
+        $("#"+position+"-list").sortable();
+    });
+    $("ul, li").disableSelection();
     $("#password-back").click(function(){
         $("#password img").remove();
         $("#password").hide();
