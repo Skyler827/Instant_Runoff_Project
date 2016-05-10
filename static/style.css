@@ -2,7 +2,11 @@
     height: 150px;
     width: 150px;
 }
-
+#password-form-border {
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}
 .login-select {
     /* these two arent working wtf*/
     border-width: 5px; 

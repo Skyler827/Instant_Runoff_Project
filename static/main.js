@@ -52,6 +52,7 @@ function loadPassword() {
         width: 300,
         height: 300,
     }).prependTo("#password");
+    $("")
 }
 function loadElections() {
     elections.forEach(function(position, i, array) {
@@ -69,13 +70,13 @@ function loadElections() {
         running[i].forEach(function(notoIndex, i, arrayp) {
             $("<li/>", {
                 class: "ui-state-default",
-                text: notochords[notoIndex]
+                text: capitalize(notochords[notoIndex])
             }).appendTo("#"+position+"-list");
         });
     });
 }
 window.onload = function() {
-    //$("#elections").hide();
+    $("#elections").hide();
     loadNotos();
     loadElections();
     $("#elections").accordion();
