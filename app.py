@@ -19,12 +19,16 @@ def send_js():
 
 @app.route('/login')
 def test_credentials():
-	try:
-		if valid_login(request.args.get('username'), request.args.get('password')):
-			return ("CORRECT", 200, [])
-		else: return ("NOAT AUTHORIZED", 401, [])
-	except Exception as a:
-		print(a)
+    print(request.args)
+    for keys, values in request.args.items():
+        print(keys)
+        print(values)
+    try:
+        if valid_login(request.args.get('username'), request.args.get('password')):
+            return ("CORRECT", 200, [])
+        else: return ("NOT AUTHORIZED", 401, [])
+    except Exception as a:
+        print(a)
 @app.route('/running')
 @app.route('/vote')
 @app.route('/results')
@@ -34,7 +38,7 @@ def valid_login(name, password):
     c = conn.cursor()
     print(name, password)
     try:
-        res=c.execute("SELECT password FROM students WHERE name = %s"%name)
+        res=c.execute("SELECT name FROM students WHERE name = %s"%name)
     except Exception as a:
         res = []
         print(a)
@@ -44,7 +48,7 @@ def valid_login(name, password):
         return resu[0]==password
     else:
         print("The user isn't in the database, so I don't know what to do with myself")
-        return True
+        return False
 
 if __name__ == '__main__':
 

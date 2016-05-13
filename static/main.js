@@ -65,13 +65,20 @@ function loadPassword() {
         event.preventDefault();
         $("#form-message").text("verifying...")
         $.ajax("login", {
-			username: notochords[currentNotochord],
-            password: $("#psw").value
+            data: {
+                username: notochords[currentNotochord],
+                password: $("#psw")[0].value
+            }
+            
         }).done(function(data, textStatus, jqXHR) {
             $("#password").hide();
             $("#elections").show();
+            console.log(data);
         }).fail(function(data, textStatus, jqXHR) {
-            $("#form-message").text("password is incorrect.")
+            $("#form-message").text("password is incorrect.");
+            console.log(data);
+            console.log(textStatus);
+            console.log(jqXHR);
         });
     });
 }
@@ -97,7 +104,10 @@ function loadElections() {
     });
     $("<button/>", {
         text:"click me",
-    }).appendTo("#elections");
+    }).appendTo("#elections")
+    .click(function(e){
+        
+    });
 }
 window.onload = function() {
     $("#elections").hide();
